@@ -2,8 +2,9 @@
  Antonio Villanueva Segura
  Servidor Wifi con activacion de PINs O Leds  tarjeta MKR WiFi 1010
  https://content.arduino.cc/assets/Pinout-MKRwifi1010_latest.png
- Crea un servidor Web , donde podemos activar diferentes LEDs 0-7 ,desde un
+ Crea un servidor Web , donde podemos activar diferentes reles 0-12 ,desde un
  navegador , por el puerto serie nos reporta informacion de la conexion
+ El modelo de tarjeta de Rele es Relay Module HW-316
  https://www.iconshock.com/
  */
  
@@ -18,7 +19,7 @@
 
 //Recupera el nombre del servidor SSID y el password wifi
 char ssid[] = SECRET_SSID;        // nombre servidor SSID
-char pass[] = SECRET_PASS;    //  pasword (usado en WPA o llave key en WEP)
+char pass[] = SECRET_PASS;    //  pasword 
 int keyIndex = 0;                // Numero de indice (key index) para tu red (solo en WEP)
 
 int status = WL_IDLE_STATUS;
@@ -134,27 +135,16 @@ void loop() {//Bucle principal
         }
 
         //------------------------------------------------------------------------------------------------------------------------
-        // Analizamos la respuesta del cliente en la pagina WEB . Termina con "_ON" o "_OFF" , recupera el numero de pin o LED
+        // Analizamos la respuesta del cliente en la pagina WEB . Termina con "PIN" , recupera el numero de pin o LED
         //https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referer
 
-        if(currentLine.endsWith("_ON") && currentLine.indexOf("http")<0) {//Si esta encendido y la linea no contiene informacion http
-            Serial.println("LINEA On ORG = "+currentLine); 
-            currentLine.remove (currentLine.indexOf('_'));//Busca caracter _ en la linea ,elimina el resto
-            currentLine.remove (0,currentLine.indexOf('/')+1);//Busca caracter / en la linea ,elimina el resto            
-            Serial.println("LINEA On elimina _ = "+currentLine); 
-            Serial.println("Conversion pin = "+String (currentLine.toInt()));             
-            digitalWrite( currentLine.toInt(),HIGH);//Activa LED
-            currentLine="";//Limpia la linea .
-  
-          
-        }
-        if(currentLine.endsWith("_OFF")&& currentLine.indexOf("http")<0){//Esta apagado
-            Serial.println("LINEA Off org= "+currentLine); 
+        //Invierte el estado de una salida
+        if (currentLine.endsWith("PIN")&& currentLine.indexOf("http")<0){//Busca la palabra clave PIN y http
+            Serial.println("LINEA org= "+currentLine); 
             currentLine.remove (currentLine.indexOf('_'));//Busca caracter _ en la linea ,elimina el resto  
-            currentLine.remove (0,currentLine.indexOf('/')+1);//Busca caracter / en la linea ,elimina el resto                        
-            Serial.println("LINEA Off elimina _= "+currentLine);                    
-            digitalWrite( currentLine.toInt(),LOW);//Apaga LED 
-            currentLine="";//Limpia la linea .        
+            currentLine.remove (0,currentLine.indexOf('/')+1);//Busca caracter / en la linea ,elimina el resto                                          
+            digitalWrite( currentLine.toInt(),! digitalRead(currentLine.toInt()));//Invierte el estado 
+            currentLine="";//Limpia la linea .
         }
         
         //------------------------------------------------------------------------------------------------------------------------        

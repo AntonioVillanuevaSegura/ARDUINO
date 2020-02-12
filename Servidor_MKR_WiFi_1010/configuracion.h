@@ -14,6 +14,5 @@
 #define SECRET_SSID "HUAWEI-6663"
 #define SECRET_PASS "54999288"
   
-
 //Retardo para iniciar
 #define RETARDO 1000
