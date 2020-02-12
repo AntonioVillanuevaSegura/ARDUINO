@@ -8,7 +8,7 @@ Creamos un servidor WEB wifi con la IP 192,168,6,1  o se puede conectar a un rou
 , password 123456789 
 .Podemos cambiar esta configuracion en el fichero configuracion.h
 
-Las salidas que controlamos van de 0 a 11 fichero salidas.cpp salidas.h
+Las salidas que controlamos van de 0 a 11 fichero salidas.h #define N_SALIDAS 12 
 
 La pagina web se crea desde el fichero pagina.cpp
 
