@@ -11,8 +11,8 @@
 #define IP 192,168,6,1
 
 //Nombre y clave del servidor WIFI (o del acceso al router)
-#define SECRET_SSID "HUAWEI-6663"
-#define SECRET_PASS "54999288"
+#define SECRET_SSID "icaro"
+#define SECRET_PASS "????????"
   
 //Retardo para iniciar
 #define RETARDO 1000
