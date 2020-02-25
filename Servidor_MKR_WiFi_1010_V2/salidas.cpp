@@ -1,5 +1,6 @@
 #include "salidas.h"
-uint8_t PINSSS[]={15,16,17,18,19,20,21,0,1,2,3,4,5,6,7,8,9,10};//A0-A6 and D0-D10
+//Se puede utilizar la configuracion de salidas digitales 0-11 o una version especificando las salidas utilizadas 
+
 //**********************************************************************************************
 void configura_salidas(){//Configura los PINs del 0-7 como salidas , gestion de LEDs o Reles
   //A0 to A6 ==D15 to D21
