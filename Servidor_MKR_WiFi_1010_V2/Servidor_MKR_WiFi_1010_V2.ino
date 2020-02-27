@@ -40,8 +40,8 @@ void setup() {
     Serial.println("Nos conectamos a un router");
   #endif     
   
-  //configura_salidas();//Configura los PINs de salida 0 ..12 p.e 
-  configura_salidas(PINSSS);//Configura los PINs de salida 0 ..12 p.e 
+  configura_salidas();//Configura los PINs de salida 0 ..12 p.e 
+
   //  Verifica el modulo Wifi 
   if (WiFi.status() == WL_NO_MODULE) {
     Serial.println("La comunicacion con el modulo Wifi no funciona !");

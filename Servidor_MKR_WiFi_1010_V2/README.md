@@ -12,5 +12,7 @@ Las salidas que controlamos van de 0 a 11 fichero salidas.h #define N_SALIDAS 12
 
 La pagina web se crea desde el fichero pagina.cpp
 
+https://www.youtube.com/watch?v=km_CX-bZnU8&feature=youtu.be
+
 ![alt text](https://github.com/AntonioVillanuevaSegura/Servidor_MKR_WiFi_1010/blob/master/doc/photo_2020-01-29_13-14-18.jpg)
 
